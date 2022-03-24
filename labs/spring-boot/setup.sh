@@ -22,8 +22,12 @@ gcloud services enable \
   cloudbuild.googleapis.com \
   containerregistry.googleapis.com 
 
+## Create GKE Cluster
+gcloud container clusters create mycluster --zone=us-central1-b
 
-## COnfigure Private VPC
+
+
+## Configure Private VPC
 gcloud compute addresses create google-managed-services-default \
     --global \
     --purpose=VPC_PEERING \
@@ -37,24 +41,7 @@ gcloud services vpc-peerings connect \
     --project=$PROJECT_ID
 
 
-## Create GKE Cluster
-gcloud container clusters create mycluster --zone=us-central1-b
 
-
-
-## Configure Private VPC Network
-gcloud compute addresses create default-ip-range \
---global \
---purpose=VPC_PEERING \
---prefix-length=16 \
---description="peering range for Google" \
---network=default
-
-
-gcloud services vpc-peerings connect \
---service=servicenetworking.googleapis.com \
---ranges=default-ip-range \
---network=default
 
 ## Create Private Postgres Cloud SQL Database
 gcloud beta sql instances create $DB_INSTANCE_NAME \
