@@ -20,7 +20,8 @@ gcloud services enable \
   container.googleapis.com \
   sourcerepo.googleapis.com \
   cloudbuild.googleapis.com \
-  containerregistry.googleapis.com 
+  containerregistry.googleapis.com \
+  servicenetworking.googleapis.com
 
 ## Create GKE Cluster
 gcloud container clusters create mycluster --zone=us-central1-b
